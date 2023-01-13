@@ -1,0 +1,122 @@
+*{
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+.itemWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.item {
+    width: calc(25% - 7px); /*calc함수 스페이스 때문에 모두 헝클어짐 */
+    aspect-ratio:  6 / 5 ;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.imgBox {
+    width: 100%;
+    height: 100%;
+}
+.imgBox img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.textBox{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 20px;
+    z-index: 3;
+}
+.textBox p {
+    color: white;
+    margin: 5px 0 0;
+}
+.textBox__name {
+    font-size: 22px;
+    font-weight: 500;
+    opacity: 0;
+}
+.textBox__price {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0;
+}
+.item:after{
+    content:"";
+    display: block;
+    background: rgba(0,0,0,0.2);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.textBox__name {
+    font-size: 22px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.textBox__price {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.item:hover:after{
+    opacity: 1;
+}
+.item:hover .imgBox img{
+    transform: scale(1.1); /*transform: scale(1.1); 배수로 입력 */
+    filter: blur(3px);
+}
+
+/*하단에서 부터 올라오는 내용은 애니메이션이 아니라 .item: hover .클래스명으로 들어가야함
+.item: hover .textBox__name
+.item: hover .textBox__price
+*/
+
+.item:hover .textBox__name{
+    opacity: 1;
+    transform: translateY(0);
+}
+.item:hover .textBox__price{
+    opacity: 1;
+    transform: translateY(0);   
+}
+.item: after,
+.item .imgBox img,
+.item .textBox__name,
+.item .textBox__price {
+    transition: all 0.4s ease-in-out;
+}
+
+.item .textBox__price {
+    transition: all 0.4s ease-in-out 0.15s;
+}
+
+
+
+
